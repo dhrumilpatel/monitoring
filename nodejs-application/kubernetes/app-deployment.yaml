@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nodejs
+    app.kubernetes.io/name: nodejs-application
+  name: nodejs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - image: blueberrie/nodejs-app:latest
+        name: nodejs
+        ports:
+        - containerPort: 5000
+        resources:
+         limits:
+           cpu: 100m
+           memory: 150Mi
+         requests:
+           cpu: 100m
+           memory: 150Mi
+status: {}
